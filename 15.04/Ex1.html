@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div style="display: flex;">
+    <input id="mas" />
+    <button onclick="
+      let max=0;
+      document.getElementById('mas').value.split(';').forEach((value)=>{
+        if (Math.abs(+value)>Math.abs(max)) {
+          max = +value;
+        }
+      });
+      document.getElementById('ans').innerText = max;
+    ">Найти максимальное по модулю</button>
+    <p id="ans"></p>
+  </div>
+</body>
+
+</html>
