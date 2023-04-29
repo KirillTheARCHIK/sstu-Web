@@ -5,9 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <style>
-    
-  </style>
+  <script src="../file.js" ></script>
 </head>
 <body>
   <div style="display: flex;">
@@ -24,12 +22,13 @@
       let b = +document.getElementById('b').value;
       let c = +document.getElementById('c').value;
       let D = b*b-4*a*c;
-      if (D<0) {
-        ansEl.innerText='Корней нет';
-      }else if (D==0) {
+      let ans = quad(a,b,c);
+      if (ans.x) {
         ansEl.innerText=`x = ${-b/(2*a)}`;
-      }else{
+      }else if (anx.x1 && ans.x2) {
         ansEl.innerText=`x1 = ${(-b-Math.sqrt(D))/(2*a)}, x2 = ${(-b+Math.sqrt(D))/(2*a)}`;
+      }else{
+        ansEl.innerText='Корней нет';
       }
     ">Вычислить</button>
     <p id="answer"></p>

@@ -6,16 +6,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <script src="../file.js" ></script>
 </head>
 
 <body>
   <div style="display: flex;">
     <input id="mas" />
     <button onclick="
-      let sum=0;
-      document.getElementById('mas').value.split(';').forEach((value)=>{
-          sum += +value;
-      });
+      let mas = document.getElementById('mas').value.split(';');
+      let sum=sumEl(mas);
       document.getElementById('ans').innerText = sum;
     ">Сумма</button>
     <p id="ans"></p>

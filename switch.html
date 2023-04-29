@@ -1,0 +1,63 @@
+Задание Циклы.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        td {
+            border: black 1px solid;
+            margin: 0;
+        }
+
+        thead tr {
+            background-color: white !important;
+        }
+
+        tr:nth-child(3n+1) {
+            background-color: red;
+        }
+
+        tr:nth-child(3n+2) {
+            background-color: yellow;
+        }
+
+        tr:nth-child(3n+3) {
+            background-color: lightgreen;
+        }
+    </style>
+    <script src="./file.js"></script>
+</head>
+
+<body>
+    <div style="flex-direction: column;">
+        <div style="flex-direction: row;">
+            <label>Start</label><input id="start" />
+            <label>End</label><input id="end" />
+            <label>Step</label><input id="step" />
+            <button onclick="
+                build('for');
+            ">Build For</button>
+            <button onclick="
+                build('while');
+            ">Build While</button>
+            <button onclick="
+                build('do while');
+            ">Build Do While</button>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <td>F*</td>
+                    <td>C*</td>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
