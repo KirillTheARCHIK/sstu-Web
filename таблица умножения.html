@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Таблица умножения</title>
+    <style>
+      body{
+        margin: 0;
+      }
+      table{
+        border-spacing: 0;
+        font-size: 30px;
+      }
+      tr:nth-child(1) {
+        background-color: orange;
+      }
+      td{
+        margin: 0;
+        padding: 5px;
+        text-align: right;
+        border: black 1px solid;
+      }
+      td:nth-child(1) {
+        background-color: orange;
+      }
+    </style>
+    <script src="./file.js"></script>
+    <script>
+      setTimeout(() => {
+        printMuliplicationTable();
+      }, 500);
+    </script>
+  </head>
+  <body>
+    <table id="table"></table>
+  </body>
+</html>

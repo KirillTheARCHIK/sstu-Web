@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Слайд шоу</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      .slide-show {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .slide-show__image-box {
+        display: flex;
+        flex-direction: row;
+      }
+      .slide-show__image {
+        width: 800px;
+        height: 400px;
+      }
+      .slide-button {
+        cursor: pointer;
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        font-size: 50px;
+        font-weight: bold;
+        background-color: lightgray;
+      }
+      .bottom-buttons {
+        display: flex;
+        flex-direction: row;
+        font-size: 50px;
+      }
+      .bottom-buttons p {
+        cursor: pointer;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script src="./file.js"></script>
+    <script>
+      const images = [
+        "https://traveller-eu.ru/sites/default/files/moscow-3550477_1280_0.jpg",
+        "https://cdn2.tu-tu.ru/image/pagetree_node_data/1/b885a7eef610d3cd302328c6a481959a/",
+        "https://www.airpano.ru/files/vr_kazan_01_big.jpg",
+      ];
+
+      window.currentImageIndex = 0;
+
+      function setImage() {
+        document
+          .getElementById("slide-show__image")
+          .setAttribute("src", images[window.currentImageIndex]);
+      }
+
+      setTimeout(() => {
+        setImage();
+      }, 100);
+
+      function slide(direction) {
+        window.currentImageIndex =
+          direction == "right"
+            ? window.currentImageIndex >= images.length - 1
+              ? 0
+              : window.currentImageIndex + 1
+            : direction == "left"
+            ? window.currentImageIndex <= 0
+              ? images.length - 1
+              : window.currentImageIndex - 1
+            : undefined;
+        setImage();
+      }
+
+      function play_pause() {
+        const button = document.getElementById('play');
+        if (window.slideShowTimer) {
+          button.textContent = '⏵';
+          clearInterval(window.slideShowTimer);
+          window.slideShowTimer = undefined;
+        } else {
+          button.textContent = '⏸';
+          window.slideShowTimer = setInterval(() => {
+            slide("right");
+          }, 1000);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="slide-show" id="slide-show">
+      <div class="slide-show__image-box">
+        <div
+          class="slide-button"
+          class="slide-button-left"
+          onclick="slide('left')"
+        >
+          <p>&#60;</p>
+        </div>
+        <img class="slide-show__image" id="slide-show__image" />
+        <div
+          class="slide-button"
+          class="slide-button-right"
+          onclick="slide('right')"
+        >
+          <p>&#62;</p>
+        </div>
+      </div>
+      <div class="bottom-buttons">
+        <p id="play" onclick="play_pause()">⏵</p>
+      </div>
+    </div>
+  </body>
+</html>

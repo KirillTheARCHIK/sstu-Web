@@ -101,7 +101,7 @@ function starLadder(count) {
 function starLadderReversed(count) {
   let str = "";
   for (let i = 0; i < count; i++) {
-    for (let j = 0; j < count - i -1; j++) {
+    for (let j = 0; j < count - i - 1; j++) {
       str += " ";
     }
     for (let j = 0; j < i * 2 + 1; j++) {
@@ -126,4 +126,19 @@ function starTree(count) {
     }
   }
   document.getElementById("p4").textContent = str;
+}
+
+function printMuliplicationTable() {
+  const table = document.getElementById("table");
+  let innerTableStr = "";
+  for (let i = 0; i <= 10; i++) {
+    innerTableStr += "<tr>";
+    for (let j = 0; j <= 10; j++) {
+      innerTableStr += `<td>${
+        i == 0 ? (j == 0 ? "" : j) : j == 0 ? i : i * j
+      }</td>`;
+    }
+    innerTableStr += "</tr>";
+  }
+  table.innerHTML = innerTableStr;
 }
