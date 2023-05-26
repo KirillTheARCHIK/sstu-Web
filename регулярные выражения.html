@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    function validEmail(email) {
+      const regexp = /^[a-zA-Z][\w]*?\@[a-z]+?\.[a-z]+$/;
+      return regexp.test(email);
+    }
+  </script>
+</head>
+
+<body>
+  <div style="display: inline-flex;">
+    <input onchange="
+      document.getElementById('valid').innerText = validEmail(this.value) ? 'Верный' : 'Неверный';
+    ">
+    <p id="valid"></p>
+  </div>
+</body>
+
+</html>
