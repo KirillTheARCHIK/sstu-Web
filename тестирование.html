@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .question {
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+  <script>
+    const questions = [
+      {
+        type: 'radio',
+        text: '1) Сколько республик изначально вошло в состав СССР?',
+        answers: [
+          '4',
+          '7',
+          '10',
+        ],
+        correct: 1,
+      },
+      {
+        type: 'radio',
+        text: '2) Как, согласно договору об образовании Советского Союза, назывался верховный орган власти в СССР?',
+        answers: [
+          'Съезд Советов СССР',
+          'Совет народных комиссаров',
+          'Верховный Совет СССР',
+        ],
+        correct: 1,
+      },
+      {
+        type: 'text',
+        text: 'Конституция СССР — основной закон Советского Союза. Сколько всего версий конституции было принято за время существования СССР?',
+        correct: 3,
+      },
+      {
+        type: 'checkbox',
+        text: 'Кто за весь период существования СССР занимал пост генерального секретаря КПСС?',
+        answers: [
+          'Иосиф Сталин',
+          'Владимир Ленин',
+          'Лев Троцкий',
+        ],
+        correct: [1, 2],
+      },
+      {
+        type: 'radio',
+        text: '5 марта 1953 года скончался Иосиф Сталин. Кто сменил его на посту председателя Совета министров СССР?',
+        answers: [
+          'Георгий Маленков',
+          'Никита Хрущёв',
+          'Вячеслав Молотов',
+        ],
+        correct: 1,
+      },
+    ];
+
+    setTimeout(() => {
+      const form = document.getElementById('testForm');
+      let innerHtml = '';
+      questions.forEach((question, qi) => {
+        innerHtml += `<div class="question">
+          <h3>${question.text}</h1>`;
+        if (question.type != 'text') {
+          question.answers.forEach((answer, ai) => {
+            innerHtml += `<label><input type="${question.type}" name="q${qi}" value="${ai + 1}"/>${answer}</label>`;
+          });
+        } else {
+          innerHtml += `<input type="text" name="q${qi}"/>`;
+        }
+        innerHtml += `</div>`;
+      });
+      form.innerHTML = innerHtml;
+    }, 200);
+
+    function check() {
+      let points = 0;
+      const form = document.getElementById('testForm');
+      const formData = new FormData(form);
+      questions.forEach((question, qi) => {
+        if (question.type == 'checkbox') {
+          const answers = formData.getAll(`q${qi}`);
+          console.log(answers);
+          answers.forEach(answer => {
+            if (question.correct.includes(+answer)) {
+              points += 1.0 / question.correct.length;
+            } else {
+              points -= 1.0 / question.correct.length;
+            }
+          })
+        } else {
+          const answer = formData.get(`q${qi}`);
+          if (answer == question.correct) {
+            points++;
+          }
+        }
+      });
+      document.getElementById('conclusion').innerText = `Правильный ответов у ${document.getElementById('name').value}: ${points} / ${questions.length}`;
+    }
+  </script>
+</head>
+
+<body>
+  <label>Введите своё имя</label><input id="name">
+  <form id="testForm">
+
+  </form>
+  <button onclick="check();">Проверить</button>
+  <p id="conclusion"></p>
+</body>
+
+</html>
